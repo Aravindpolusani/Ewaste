@@ -1,0 +1,21 @@
+.icons-container {
+  position: fixed;
+  bottom: 20px; 
+  right: 20px; 
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.icons-container h4 {
+  margin-bottom: 5px;
+  color: white;
+}
+
+.icons-container a {
+  margin-right: 10px;
+}
+
+.icons-container i {
+  font-size: 24px; 
+}

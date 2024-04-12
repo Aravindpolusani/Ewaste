@@ -1,0 +1,43 @@
+.body{
+    margin-top: 20px;
+}
+.aboutpage img{
+    width:450px;
+    height:350px;
+    object-fit: cover;
+    right:25px;
+    margin-top:60px;
+    margin-bottom: 30px;
+    margin-left:120px;
+}
+.txt{
+    color:black;
+    margin-left:470px;
+    margin-bottom:50px;
+    margin-top:100px ;
+}
+
+.txt p{
+    font-size: larger;
+    text-align: justify;
+    margin-top: 10px;
+    
+}
+.txt ul{
+    font-size: larger;
+    text-align: justify;
+    margin-bottom: 50px;
+}
+
+.aboutpage{
+    background-color:rgba(11, 14, 14, 0.459);
+     width: 1200px;
+     height:500px;
+     margin-top: 10px;
+}
+.aboutpage h1{
+    font-style: italic;
+    color: rgb(12, 12, 71);
+    text-align: center;
+    text-decoration: underline;
+}

@@ -1,0 +1,32 @@
+.outer-div {
+    display: flex;
+    border: 3px solid blueviolet;
+    height: 518px;
+    border-radius: 5px;
+  }
+  
+  .image-div {
+    flex: 1;
+    float: left;
+    margin-right: 140px;
+    
+  }
+  .image-div h1{
+    margin-left: 15px;
+  }
+  
+  .details {
+    flex: 1;
+    float: right;
+    margin-top: 60px;
+  }
+  .carticon {
+    position: fixed;
+    top: 100px; 
+    right: 50px; 
+    z-index: 999; 
+    cursor: pointer;
+  }
+  .rev{
+    width: 50px;
+  }

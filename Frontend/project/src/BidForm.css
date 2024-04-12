@@ -1,0 +1,56 @@
+.bid-form-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: white;
+    border: 2px solid blueviolet;
+    border-radius: 5px;
+  }
+  
+  .bidding-in-progress {
+    margin-bottom: 20px;
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .submit-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .finish-button {
+    margin-top: 10px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .start-button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .highest-bid-container {
+    margin-top: 20px;
+  }
+  

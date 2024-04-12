@@ -1,0 +1,52 @@
+.content {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  h3{
+    text-align: center;
+    color: rgb(210, 30, 84);
+    text-decoration: underline;
+  }
+  
+  .box {
+    background-color: rgb(0, 174, 255);
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: calc(100% - 10px);
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .img button {
+    width: 100%;
+    padding: 10px;
+    background-color: black;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .img button:hover {
+    background-color: orange;
+  }
+  
+  span.error {
+    color: red;
+    font-size: 12px;
+  }
+  

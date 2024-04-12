@@ -1,0 +1,15 @@
+.logout{
+    align-items: center;
+    text-align: center;
+    margin-top: 15%;
+}
+
+.logout button{
+    font-size: x-large;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: rgb(241, 246, 246);
+    border-radius: 5px;
+}
+.logout button:hover{
+    background-color:rgb(187, 187, 189) ;
+}

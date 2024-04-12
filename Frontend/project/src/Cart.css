@@ -1,0 +1,43 @@
+.cart-container {
+    position: relative;
+    padding: 20px;
+    background-color: #ccc;
+    height: 440px;
+    width: 1180px;
+    overflow: auto;
+  }
+  .free{
+    width: 1180px;
+    height: 13%;
+    background-color: aquamarine;
+  }
+  .free h1{
+    text-align: center;
+  }
+  
+  .product-list {
+    width: 100%;
+  }
+  
+  .product-item {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  .product-image {
+    width: 300px;
+    height: 280px;
+    object-fit: cover;
+    margin-right: 350px;
+  }
+  
+  .product-details {
+    flex: 4; 
+    margin-right: 100px;
+  }
+  
+  .product-details h2 {
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
+  

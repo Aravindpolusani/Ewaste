@@ -1,0 +1,32 @@
+.ewaste4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.oip {
+    display: flex;
+    flex-direction: row;
+}
+
+.oip img {
+    width: 90%;
+}
+
+.textboxes {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.textbox4 {
+    margin-top: -40px;
+}
+
+.textbox5 {
+    margin-bottom: 40px;
+}

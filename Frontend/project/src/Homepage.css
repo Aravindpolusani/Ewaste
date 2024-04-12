@@ -1,0 +1,17 @@
+.loop {
+    position: relative;
+    width: fit-content;
+}
+
+.img5 {
+    height: 500px;
+    width: 1180px;
+    border-radius: 5px;
+}
+
+.buttonloop {
+    position: absolute;
+    top: 50%;
+    top: 30px;
+    right: 20px;
+}
