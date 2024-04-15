@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet';
 import './Register.css';
 import Dealerlogin from './Dealerlogin';
 
@@ -61,6 +62,9 @@ const Dealerregister = ({ backgroundImageUrl1, backgroundImageUrl2 }) => {
 
   return (
     <div className='img'>
+      <Helmet>
+      <title>Dealerregister | E-waste Management</title>
+      </Helmet>
     <div className='content'>
     <form onSubmit={handleSubmit}>
       <div className='box'>

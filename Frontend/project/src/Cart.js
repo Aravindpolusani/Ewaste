@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import './Cart.css';
 import Company from './Company';
 
@@ -26,6 +27,9 @@ function Cart() {
 
   return (
     <div>
+      <Helmet>
+      <title>Company-Orders | E-waste Management</title>
+      </Helmet>
       <div className='cmp'>
     <i class="fa fa-angle-double-left" aria-hidden="true" onClick={()=>{setcmpback(true)}} ></i>
     </div> 

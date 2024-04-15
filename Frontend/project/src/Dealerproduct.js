@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import './Dealerproduct.css'; 
 import Dealer from './Dealer';
@@ -27,6 +28,9 @@ function Products() {
 
   return (
     <div className='products'>
+      <Helmet>
+      <title>Dealer-Products | E-waste Management</title>
+      </Helmet>
       <div className='tree'>
       <div className='cmp'>
         <i class="fa fa-angle-double-left" aria-hidden="true" onClick={()=>{setcmpback(true)}} ></i>

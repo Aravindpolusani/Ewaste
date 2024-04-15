@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet';
 import Button from 'react-bootstrap/Button';
 
 function FormDealer({ onSubmit }) {
@@ -24,6 +25,9 @@ function FormDealer({ onSubmit }) {
 
   return (
     <form onSubmit={handleSubmit}>
+      <Helmet>
+      <title>Dealer-Product.Orders | E-waste Management</title>
+      </Helmet>
       <input type="text" name="name" value={dealerDetails.name} 
       onChange={handleChange} placeholder="Dealer Name" required />
 

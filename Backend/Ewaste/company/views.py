@@ -6,9 +6,10 @@ from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
-from .models import User,Dealer,Product,Company,Bid,RegDealer
+from .models import User,Dealer,Product,Company,Bid,RegDealer,Highestbid
 from django.core.mail import send_mail
-from .serializers import UserSerializer,RegDealerSerializer,DealerSerializer,ProductSerializer,CompanySerializer,BidSerializer,dealerser,companyser
+from .serializers import UserSerializer,CompanySerializer,BidSerializer,dealerser,companyser
+from .serializers import HighestbidSerializer,RegDealerSerializer,DealerSerializer,ProductSerializer
 from django.db.models import Max
 from django.contrib.sessions.models import Session
 from json import dumps
@@ -105,7 +106,6 @@ def companyform(request):
         print(serializer.errors)
         return Response(status=status.HTTP_400_BAD_REQUEST)
     
-
 class CompanyListAPIView(generics.ListAPIView):
     queryset = Company.objects.all()
     serializer_class = CompanySerializer
@@ -234,12 +234,12 @@ def succesotp(request):
                 print(userseri.errors)
                 return Response(status=status.HTTP_400_BAD_REQUEST)
 
+
 class bideddata(APIView):
     def get(self,request):
         seri=Bid.objects.all()
         biddata=BidSerializer(seri,many=True)
         return Response(biddata.data,status=status.HTTP_200_OK)
-
 
 class startbid(APIView):
     def post(self,request):
@@ -247,17 +247,34 @@ class startbid(APIView):
         request.session.set_expiry(300)
         request.session.save()
         print(request.session.items())
+
         recent_session=Session.objects.order_by('-expire_date').first()
         bid_started=recent_session.get_decoded()['bidstarted']
+        
         if str(bid_started)=='False':
             max_amount = Bid.objects.aggregate(max_amount=Max('amount'))['max_amount']
-            max_details=Bid.objects.filter(amount=max_amount)
-            serilizer=BidSerializer(max_details,many=True).data
-            Bid.objects.all().delete()
-            Company.objects.all().delete()
-            return Response(serilizer,status=status.HTTP_200_OK)
-        return Response(status=status.HTTP_100_CONTINUE)
+            max_details=Bid.objects.filter(amount=max_amount).first()
+            company_data = Company.objects.first()
 
+            
+            if max_details and company_data:
+                highest_bid_data = {
+                'user_name': max_details.user_name,
+                'amount': max_details.amount,
+                'product_name': company_data.product_name,
+                'quantity': company_data.quantity,
+                 }
+                print(highest_bid_data)
+                serializer1 = HighestbidSerializer(data=highest_bid_data)
+                if serializer1.is_valid():
+                    serializer1.save()
+                    serilizer=BidSerializer(max_details).data
+                    Bid.objects.all().delete()
+                    Company.objects.all().delete()
+                    return Response(serilizer,status=status.HTTP_200_OK)
+                return Response(status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_200_OK)
+    
 @api_view(['POST'])
 def Bidform(request):
     if request.method == 'POST':
@@ -268,12 +285,17 @@ def Bidform(request):
             if serializer.is_valid():
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
-            
-            
         return Response(status=status.HTTP_400_BAD_REQUEST)
-        
     
+class HighestbidListView(APIView):
+    def get(self, request):
+        highestbids = Highestbid.objects.all()
+        serializer = HighestbidSerializer(highestbids, many=True)
+        return Response(serializer.data)
+        
 class BidListAPIView(generics.ListAPIView):
     queryset = Bid.objects.all()
     serializer_class = BidSerializer
+
+
 

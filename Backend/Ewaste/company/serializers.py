@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import User,RegDealer,Company,Dealer
-from .models import Product,Bid
+from .models import Product,Bid,Highestbid
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -44,5 +44,10 @@ class BidSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bid
         fields = '__all__'
+
+class HighestbidSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Highestbid
+        fields='__all__'
 
 

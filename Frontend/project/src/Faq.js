@@ -1,9 +1,13 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import './Faq.css';
 
 function Faq(){
    return(
     <div className="faq">
+        <Helmet>
+      <title> Faqs | E-waste Management</title>
+      </Helmet>
       <div className="f" ><h1>Frequently Asked Questions</h1></div>
        <section id="faqs">
         <details class='faq-item'>

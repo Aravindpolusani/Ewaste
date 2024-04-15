@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Company,Product
 from .models import Dealer,RegDealer
-from .models import Bid,User
+from .models import Bid,User,Highestbid
 
 # Register your models here.
 admin.site.register(Company)
@@ -10,3 +10,4 @@ admin.site.register(Dealer)
 admin.site.register(Bid)
 admin.site.register(User)
 admin.site.register(RegDealer)
+admin.site.register(Highestbid)

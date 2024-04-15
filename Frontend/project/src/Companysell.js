@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet';
 import axios from 'axios';
 import './Companysell.css'
 import Company from './Company';
@@ -49,6 +50,9 @@ const Companysell = () => {
   }
   return (
   <div>
+    <Helmet>
+      <title>Company-sell | E-waste Management</title>
+      </Helmet>
     <div className='cmp'>
     <i class="fa fa-angle-double-left" aria-hidden="true" onClick={()=>{setcmpback(true)}} ></i>
     </div> 

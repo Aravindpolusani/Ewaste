@@ -30,3 +30,8 @@
   .rev{
     width: 50px;
   }
+  #prev{
+    position: absolute;
+    margin-top: 450px;
+    margin-left: 20px;
+  }

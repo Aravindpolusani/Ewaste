@@ -1,4 +1,5 @@
 import React, { useState,useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 import axios from 'axios';
 import Dealer from './Dealer';
 import './BiddingFormPage.css'; 
@@ -27,7 +28,9 @@ const BiddingFormPage = ({ onSubmitBid }) => {
       await axios.post('http://localhost:8000/bid/',{
       'user_name':userId,'amount':amount
       });
-      alert('data added succes')
+      alert('Bid submited')
+      setUserId('');
+      setAmount('');
     } catch {
       alert('Bidding is not started at')      
     }
@@ -39,6 +42,9 @@ const BiddingFormPage = ({ onSubmitBid }) => {
 
   return (
     <div>
+      <Helmet>
+      <title>Dealer-Bidding | E-waste Management</title>
+      </Helmet>
     <div className="bid-form-container1" >
       <div className='cmp'>
     <i class="fa fa-angle-double-left" aria-hidden="true" onClick={()=>{setcmpback(true)}} ></i>
@@ -60,6 +66,7 @@ const BiddingFormPage = ({ onSubmitBid }) => {
         </form>
       </div>
     </div>
+
     {bideddata && bideddata.length > 0 && (
   <div id='tablediv'>
     <table className="bided-table">

@@ -25,4 +25,5 @@ urlpatterns = [
     path('succesotp/', views.succesotp,name='succesotpapi'),
     path('startbid/', views.startbid.as_view(),name='startbidapi'),
     path('bidedata/', views.bideddata.as_view(),name='bideddataapi'),
+    path('highestbids/', views.HighestbidListView.as_view(), name='highestbid-list'),
 ]

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet';
 import Button from 'react-bootstrap/Button';
 import Dealertrash from './Dealertrash';
 import Dealerproduct from './Dealerproduct';
@@ -24,6 +25,9 @@ function Dealer() {
   return (
   
       <div className='ewaste4'>
+        <Helmet>
+           <title>Dealer | E-waste Management</title>
+      </Helmet>
           <div className='oip'>
             <img src={oip} />
             <div className='textboxes'>

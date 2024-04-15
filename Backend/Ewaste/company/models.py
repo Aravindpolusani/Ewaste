@@ -55,3 +55,12 @@ class Bid(models.Model):
 
     def __str__(self):
         return self.user_name
+
+class Highestbid(models.Model):
+    user_name = models.CharField(max_length=100)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    product_name = models.CharField(max_length=100)
+    quantity = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f"{self.user_name} - {self.amount} - {self.product_name} - {self.quantity}"

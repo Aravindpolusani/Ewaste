@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import './Login.css';
 import { AuthContext } from './AuthContext';
 import Dealer from './Dealer';
@@ -52,6 +53,9 @@ if (registerdealer){return<Dealerregister />;}
 
   return (
     <div className="login-container">
+      <Helmet>
+      <title>Dealerlogin | E-waste Management</title>
+      </Helmet>
       <form onSubmit={handleLogin}>
         <h3>Dealer Login</h3>
         <label>

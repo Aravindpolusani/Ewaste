@@ -1,4 +1,5 @@
 import './ForgotPage.css'
+import { Helmet } from 'react-helmet';
 import Button from 'react-bootstrap/Button';
 import React, { useState } from 'react';
 import axios from 'axios';
@@ -38,6 +39,9 @@ function ForgotPage({value}) {
 
     return (
         <div id="container-1">
+            <Helmet>
+                <title>ForgotPage | E-waste Management</title>
+            </Helmet>
             <center>
             <h3>Find Your Account</h3>
             <hr />

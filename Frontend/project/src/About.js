@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import { Carousel } from 'react-bootstrap';
 import About2 from './Images/About2.jpg';
 import first from './Images/first1.jpg';
@@ -9,6 +10,9 @@ import './About.css';
 function About(){
         return(
         <div className="aboutpage"> 
+        <Helmet>
+      <title>About | E-waste Management</title>
+      </Helmet>
        <blink> <h1>About us</h1> </blink>
             
         <Carousel>

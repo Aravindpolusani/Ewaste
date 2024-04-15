@@ -1,0 +1,25 @@
+.highbid{
+    border: 2px solid blueviolet;
+    border-radius: 5px;
+    padding: 5px;
+    overflow: auto;
+}
+.highestbid {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .highestbid th,
+  .highestbid td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .highestbid th {
+    background-color: #f2f2f2;
+  }
+  
+  .highestbid tbody tr:last-child td {
+    border-bottom: black;
+  }
+  

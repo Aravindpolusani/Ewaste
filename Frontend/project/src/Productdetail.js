@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 import Button from 'react-bootstrap/Button';
 import { useParams } from 'react-router-dom';
 import './Productdetails.css';
@@ -42,6 +43,9 @@ function ProductDetail() {
 
   return (
     <div className='outer-div'>
+      <Helmet>
+      <title>Dealer-Product.Orders | E-waste Management</title>
+      </Helmet>
       <div className='image-div'>
         <h1>{product.Product_name}</h1>
         <img src={`http://127.0.0.1:8000${product.Product_Image}`} height={'400px'} width={'400px'} alt={product.Product_name}/>
@@ -61,6 +65,5 @@ function ProductDetail() {
     </div>
   );
 }
-
 export default ProductDetail;
 

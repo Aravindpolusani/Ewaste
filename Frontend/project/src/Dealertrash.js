@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 import axios from 'axios';
 import './Dealertrash.css';
 import Dealer from './Dealer';
@@ -26,7 +27,9 @@ const Dealertrash = () => {
   }
 
   return (
-    <div className='display'>
+    <div className='display'><Helmet>
+    <title>Dealer-Trash | E-waste Management</title>
+    </Helmet>
       <div className='cmp'>
         <i class="fa fa-angle-double-left" aria-hidden="true" onClick={()=>{setcmpback(true)}} ></i>
       </div>

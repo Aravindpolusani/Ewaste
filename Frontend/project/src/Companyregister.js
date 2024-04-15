@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet';
 import Companylogin from './Companylogin';
 import './Register.css';
 
@@ -61,6 +62,9 @@ const Companyregister = ({ backgroundImageUrl1, backgroundImageUrl2 }) => {
 
   return (
     <div className='img'>
+      <Helmet>
+      <title>companyRegister | E-waste Management</title>
+      </Helmet>
     <div className='content'>
     <form onSubmit={handleSubmit}>
       <div className='box'>

@@ -1,5 +1,6 @@
 import React,{useContext} from 'react';
 import ScrollingMessage from './ScrollingMessage';
+import { Helmet } from 'react-helmet';
 import Icon from './Icon';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -36,14 +37,18 @@ import ForgotPage from './ForgotPage';
 import OtpValidation from './OtpValidation';
 import SuccessOtp from './SuccessOtp';
 import Logpage from './Homepage';
+import Highestbidpage from './Highestbidpage';
 
 function App() {
-
+   
   const {companylogin,dealerlogin} = useContext(AuthContext);
 
-
   return (
+    
     <Router> 
+      <Helmet>
+      <title>E-waste Management</title>
+      </Helmet>
       <div className='App'>
         <Navbar bg="primary" variant="dark" expand="lg" fixed="top">
           <Container>
@@ -83,10 +88,11 @@ function App() {
                   </Link>
                 <Dropdown.Toggle split variant="primary" id="dropdown-split-basic" />
                 <Dropdown.Menu>
-                <Dropdown.Item as={Link} to="/sell">Sell</Dropdown.Item>
-                <Dropdown.Item as={Link} to="/trash">Remove</Dropdown.Item>
+                <Dropdown.Item as={Link} to="/sell">Sell Products</Dropdown.Item>
+                <Dropdown.Item as={Link} to="/trash">Remove Trash</Dropdown.Item>
                 <Dropdown.Item as={Link} to="/cart">Orders</Dropdown.Item>
                 <Dropdown.Item as={Link} to="/bid">Bidding</Dropdown.Item>
+                <Dropdown.Item as={Link} to="/highestbid">Highestbids</Dropdown.Item>
                </Dropdown.Menu>
               </Dropdown>)}
 
@@ -147,6 +153,7 @@ function App() {
           <Route path='/otpvalid' element={<OtpValidation/>}/>
           <Route path='/success' element={<SuccessOtp/>}/>
           <Route path='/log' element={<Logpage />} />
+          <Route path='/highestbid' element={<Highestbidpage/>} />
         </Routes>
       </div>
     </Router>
