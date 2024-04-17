@@ -44,6 +44,7 @@ class BidSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bid
         fields = '__all__'
+        
 
 class HighestbidSerializer(serializers.ModelSerializer):
     class Meta:

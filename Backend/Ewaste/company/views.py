@@ -146,11 +146,11 @@ def forgot(request):
                 subject='OTP'
                 from_user='aravindpolusani@gmail.com'
                 to_list=[request.data['email']]
-                
+                """
                 msg='''
                     {} this is otp to update your personal details...
                     NOTE:This otp is valide for 5 mins'''.format(otp)
-                send_mail(subject=subject,from_email=from_user,recipient_list=to_list,message=msg)
+                send_mail(subject=subject,from_email=from_user,recipient_list=to_list,message=msg)"""
 
                 return Response(status=status.HTTP_200_OK)
         elif value in ['dealer','Dealer']:
@@ -166,11 +166,11 @@ def forgot(request):
                 subject='OTP'
                 from_user='aravindpolusani@gmail.com'
                 to_list=[request.data['email']]
-                
+                """
                 msg='''
                     {} this is otp to update your personal details...
                     NOTE:This otp is valide for 5 mins'''.format(otp)
-                send_mail(subject=subject,from_email=from_user,recipient_list=to_list,message=msg)
+                send_mail(subject=subject,from_email=from_user,recipient_list=to_list,message=msg)"""
                 
                 return Response(status=status.HTTP_200_OK)
         return Response(status=status.HTTP_400_BAD_REQUEST)
@@ -242,50 +242,61 @@ class bideddata(APIView):
         return Response(biddata.data,status=status.HTTP_200_OK)
 
 class startbid(APIView):
-    def post(self,request):
-        request.session['bidstarted']=request.data['started']
-        request.session.set_expiry(300)
-        request.session.save()
-        print(request.session.items())
+    def post(self, request):
+        d = Company.objects.all()
+        if len(d) > 0:
+            request.session['bidstarted'] = request.data.get('started')
+            request.session.set_expiry(300)
+            request.session.save()
+            recent_session = Session.objects.order_by('-expire_date').first()
+            bid_started = recent_session.get_decoded()['bidstarted']
+            print(bid_started)
 
-        recent_session=Session.objects.order_by('-expire_date').first()
-        bid_started=recent_session.get_decoded()['bidstarted']
-        
-        if str(bid_started)=='False':
-            max_amount = Bid.objects.aggregate(max_amount=Max('amount'))['max_amount']
-            max_details=Bid.objects.filter(amount=max_amount).first()
-            company_data = Company.objects.first()
-
-            
-            if max_details and company_data:
-                highest_bid_data = {
-                'user_name': max_details.user_name,
-                'amount': max_details.amount,
-                'product_name': company_data.product_name,
-                'quantity': company_data.quantity,
-                 }
-                print(highest_bid_data)
-                serializer1 = HighestbidSerializer(data=highest_bid_data)
-                if serializer1.is_valid():
-                    serializer1.save()
-                    serilizer=BidSerializer(max_details).data
-                    Bid.objects.all().delete()
-                    Company.objects.all().delete()
-                    return Response(serilizer,status=status.HTTP_200_OK)
-                return Response(status=status.HTTP_400_BAD_REQUEST)
-        return Response(status=status.HTTP_200_OK)
+            if str(bid_started) == 'False':
+                max_amount = Bid.objects.aggregate(max_amount=Max('amount'))['max_amount']
+                max_details = Bid.objects.filter(amount=max_amount).first()
+                company_data = Company.objects.first()
+                if max_details and company_data:
+                    highest_bid_data = {
+                        'user_name': max_details.user_name,
+                        'amount': max_details.amount,
+                        'product_name': company_data.product_name,
+                        'quantity': company_data.quantity,
+                    }
+                    serializer1 = HighestbidSerializer(data=highest_bid_data)
+                    if serializer1.is_valid():
+                        serializer1.save()
+                        serilizer = BidSerializer(max_details).data
+                        Bid.objects.all().delete()
+                        Company.objects.all().delete()
+                        return Response(serilizer, status=status.HTTP_200_OK)
+                    return Response({'message': 'Failed to save highest bid'}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({'message': 'Failed to find highest bid or company data'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'message': 'Bidding is started'}, status=status.HTTP_200_OK)
+        return Response({'message': 'No Trash is found'}, status=status.HTTP_400_BAD_REQUEST)
     
 @api_view(['POST'])
 def Bidform(request):
     if request.method == 'POST':
-        recent_session=Session.objects.order_by('-expire_date').first()
-        bid_started=recent_session.get_decoded()['bidstarted']
-        if str(bid_started)=='True':
-            serializer = BidSerializer(data=request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+        first_rec = Company.objects.first()
+        user_amount = request.data.get('amount') 
+        recent_session = Session.objects.order_by('-expire_date').first()
+        bid_started = recent_session.get_decoded().get('bidstarted')  
+
+        if str(bid_started) == 'True':
+            if int(user_amount) > first_rec.price:
+                serializer = BidSerializer(data=request.data)
+                if serializer.is_valid():
+                    serializer.save()
+                    return Response({'message': 'Bid placed successfully'}, status=status.HTTP_200_OK)
+                else:
+                    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                return Response({'message': 'Bidded price must be greater than the minimum amount {}'.format(first_rec.price)}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response({'message': 'Bidding has not started yet'}, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        return Response({'message': 'Method not allowed'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
     
 class HighestbidListView(APIView):
     def get(self, request):

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ScrollingMessage from './ScrollingMessage';
 import { Helmet } from 'react-helmet';
 import Button from 'react-bootstrap/Button';
 import Dealertrash from './Dealertrash';
@@ -29,6 +30,9 @@ function Dealer() {
            <title>Dealer | E-waste Management</title>
       </Helmet>
           <div className='oip'>
+            <div>
+              <ScrollingMessage />
+            </div>
             <img src={oip} />
             <div className='textboxes'>
               <div className='textbox5'>

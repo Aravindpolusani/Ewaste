@@ -99,13 +99,14 @@ const Companysell = () => {
         </label>
 
         <label>
-        Company:
-       <input type="text" name="Company" value={formData.Company} onChange={handleInputChange} required/>
-       </label> 
+         Company:
+          <input type="text" name="Company" value={formData.Company} onChange={handleInputChange} required/>
+        </label> 
 
         <button type="submit">Submit</button>
       </form>
-    </div></div>
+    </div>
+  </div>
   );
 };
 

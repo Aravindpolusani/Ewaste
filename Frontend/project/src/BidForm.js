@@ -1,35 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import axios from 'axios';
 import './BidForm.css';
 import Company from './Company'; 
 
 const BidForm = () => {
-  const [highestbid, sethighestBid] = useState([]);
-  const [cmpback, setcmpBack] = useState(false);
+  const [highestbid, setHighestBid] = useState({});
+  const [cmpback, setCmpBack] = useState(false);
 
   const startBid = async () => {
     try {
-      sethighestBid([]);
-      alert('Bidding going to start');
       await axios.post('http://localhost:8000/startbid/', {
         started: true,
       });
+      alert('Bidding started successfully');
     } catch (error) {
-      alert('Something went wrong');
+      alert(error.response.data.message || 'Failed to start bidding');
     }
   };
 
   const stopBid = async () => {
     try {
-      alert('You ended the bidding');
       const response = await axios.post('http://localhost:8000/startbid/', {
         started: false,
       });
-      
-      sethighestBid(response.data);
+      setHighestBid(response.data);
+      alert('Bidding stopped successfully');
     } catch (error) {
-      alert('Something went wrong');
+      alert(error.response.data.message || 'Failed to stop bidding');
     }
   };
 
@@ -40,10 +38,10 @@ const BidForm = () => {
   return (
     <div className="bid-form-container">
       <Helmet>
-        <title>Company-Bidding  | E-waste Management</title>
+        <title>Company-Bidding | E-waste Management</title>
       </Helmet>
       <div className='cmp'>
-        <i className="fa fa-angle-double-left" aria-hidden="true" onClick={() => { setcmpBack(true) }}></i>
+        <i className="fa fa-angle-double-left" aria-hidden="true" onClick={() => { setCmpBack(true) }}></i>
       </div>
 
       <div className="control-buttons-container">
@@ -58,8 +56,6 @@ const BidForm = () => {
             <p>Amount: {highestbid.amount}</p>
           </div>
         )}
-       
-        
       </div>
     </div>
   );

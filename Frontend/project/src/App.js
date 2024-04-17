@@ -1,5 +1,4 @@
 import React,{useContext} from 'react';
-import ScrollingMessage from './ScrollingMessage';
 import { Helmet } from 'react-helmet';
 import Icon from './Icon';
 import Nav from 'react-bootstrap/Nav';
@@ -174,7 +173,6 @@ function HomePage() {
           <video className="video-bg" autoPlay loop muted>
             <source src={videos} type="video/mp4" />
           </video>
-          <ScrollingMessage />
           
         </div>
       ) : null}
